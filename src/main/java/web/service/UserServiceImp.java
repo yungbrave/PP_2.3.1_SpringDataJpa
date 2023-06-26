@@ -20,22 +20,25 @@ public class UserServiceImp implements UserService {
         this.userRepository = userRepository;
     }
 
+    @Override
     public List<User> findAll() {
         return userRepository.findAll();
     }
 
+    @Override
     public User findOne(long id) {
         Optional<User> foundUser = userRepository.findById(id);
         return foundUser.orElse(null);
     }
 
+    @Override
     @Transactional
     public void save(User user) {
         userRepository.save(user);
     }
 
     @Transactional
-    public void update(long id,User updatedUser) {
+    public void update(long id, User updatedUser) {
         updatedUser.setId(id);
         userRepository.save(updatedUser);
     }

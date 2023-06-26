@@ -1,10 +1,26 @@
 <!DOCTYPE html>
-<html lang="en", xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>All people</title>
 </head>
 <body>
-hello
+<h2>All users</h2>
+<hr>
+<table border="1" style="width:100px">
+    <tr>
+        <td>id</td>
+        <td>name</td>
+        <td>surname</td>
+        <td>age</td>
+
+    </tr>
+    <tr th:each="user: ${users}">
+        <td th:text="${user.getId()}"/>
+        <td th:text="${user.getName()}"/>
+        <td th:text="${user.getSurname()}"/>
+        <td th:text="${user.getAge()}"/>
+    </tr>
+</table>
 </body>
 </html>
