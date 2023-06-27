@@ -30,10 +30,30 @@ public class UsersController {
         return "users/new";
     }
 
-    @PostMapping()
+    @PostMapping
     public String create(@ModelAttribute("user") User user) {
         userService.save(user);
         return "redirect:/users";
     }
 
+    @GetMapping("/{id}/edit")
+    public String edit(@PathVariable("id") long id,
+                       Model model) {
+        model.addAttribute("user", userService.findOne(id));
+        return "users/edit";
+    }
+
+    @PatchMapping("/{id}")
+    public String update(@ModelAttribute("user") User updatedUser,
+                         @PathVariable("id") long id) {
+        System.out.println("test");
+        userService.update(id, updatedUser);
+        return "redirect:/users";
+    }
+
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable("id") long id) {
+        userService.delete(id);
+        return "redirect:/users";
+    }
 }
